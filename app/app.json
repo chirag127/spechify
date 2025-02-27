@@ -15,7 +15,6 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSMicrophoneUsageDescription": "This app needs access to the microphone for speech recognition.",
         "NSSpeechRecognitionUsageDescription": "This app needs access to speech recognition to convert your speech to text."
       }
     },
@@ -24,7 +23,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["RECORD_AUDIO"]
+      "permissions": [
+        "FOREGROUND_SERVICE",
+        "CAPTURE_AUDIO_OUTPUT"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
