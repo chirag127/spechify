@@ -26,13 +26,27 @@
       "permissions": [
         "FOREGROUND_SERVICE",
         "CAPTURE_AUDIO_OUTPUT"
-      ]
+      ],
+      "package": "com.spechify",
+      "allowBackup": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-speech-recognition"
-    ]
+      "expo-speech-recognition",
+      [
+        "expo-av",
+        {
+          "microphonePermission": false
+        }
+      ],
+      "./plugins/withAndroidManifest"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "spechify"
+      }
+    }
   }
 }
