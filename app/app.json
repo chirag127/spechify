@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "app",
-    "slug": "app",
+    "slug": "spechify",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,7 +15,8 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSSpeechRecognitionUsageDescription": "This app needs access to speech recognition to convert your speech to text."
+        "NSSpeechRecognitionUsageDescription": "This app needs access to speech recognition to convert your speech to text.",
+        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to use the microphone."
       }
     },
     "android": {
@@ -25,7 +26,9 @@
       },
       "permissions": [
         "FOREGROUND_SERVICE",
-        "CAPTURE_AUDIO_OUTPUT"
+        "CAPTURE_AUDIO_OUTPUT",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
       ],
       "package": "com.spechify",
       "allowBackup": true
@@ -45,8 +48,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "spechify"
+        "projectId": "6281d2d5-9f1d-4c9a-8a13-622a34f85b0e"
       }
-    }
+    },
+    "owner": "chirag127"
   }
 }
