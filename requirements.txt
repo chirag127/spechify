@@ -1,5 +1,0 @@
-kivy==2.2.1
-kivymd==1.1.1
-pyaudio==0.2.13
-SpeechRecognition==3.10.0
-android-permissions==1.1.0
