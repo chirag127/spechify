@@ -5,8 +5,6 @@ import {
   getSupportedLocales,
   ExpoSpeechRecognitionModule,
   ExpoSpeechRecognitionNativeEventMap,
-  ExpoSpeechRecognitionResultEvent,
-  ExpoSpeechRecognitionErrorEvent
 } from 'expo-speech-recognition';
 import * as Localization from 'expo-localization';
 import { EventSubscription } from 'expo-modules-core';
@@ -45,40 +43,49 @@ class SpeechService {
     }
 
     try {
-      this.isListening = true;
+      // Clean up any existing listeners first
+      this.cleanup();
 
-      // Set up result listener before starting recognition
-      this.resultListener = addSpeechRecognitionListener(
-        'result',
-        (event: ExpoSpeechRecognitionNativeEventMap['result']) => {
-          if (event?.results && event.results.length > 0) {
-            const text = event.results[0].transcript || '';
-            options.onResult?.(text);
-          }
-        }
-      );
-
-      // Set up error listener
-      this.errorListener = addSpeechRecognitionListener(
-        'error',
-        (event: ExpoSpeechRecognitionNativeEventMap['error']) => {
-          if (event) {
-            options.onError?.(event.error || 'Unknown error occurred');
-          }
-        }
-      );
-
-      // Start recognition using the module
+      // Start recognition before setting up listeners
       await ExpoSpeechRecognitionModule.start({
         lang: options.language || this.currentLanguage,
         interimResults: true,
       });
 
+      this.isListening = true;
+
+      // Set up result listener after starting recognition
+      this.resultListener = addSpeechRecognitionListener('result', (event) => {
+        if (event?.results && event.results.length > 0) {
+          const text = event.results[0].transcript || '';
+          options.onResult?.(text);
+        }
+      });
+
+      // Set up error listener
+      this.errorListener = addSpeechRecognitionListener('error', (event) => {
+        const errorMessage = event?.error || 'Unknown error occurred';
+        options.onError?.(errorMessage);
+        this.cleanup();
+      });
+
     } catch (error: unknown) {
-      this.isListening = false;
+      this.cleanup();
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       options.onError?.('Failed to start speech recognition: ' + errorMessage);
     }
+  }
+
+  private cleanup() {
+    if (this.resultListener) {
+      this.resultListener.remove();
+      this.resultListener = undefined;
+    }
+    if (this.errorListener) {
+      this.errorListener.remove();
+      this.errorListener = undefined;
+    }
+    this.isListening = false;
   }
 
   async stop() {
@@ -88,11 +95,8 @@ class SpeechService {
 
     try {
       await ExpoSpeechRecognitionModule.stop();
-      // Clean up listeners
-      this.resultListener?.remove();
-      this.errorListener?.remove();
     } finally {
-      this.isListening = false;
+      this.cleanup();
     }
   }
 
