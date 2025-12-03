@@ -1,73 +1,94 @@
-name: CI
+# Continuous Integration Workflow
 
-# Controls when the workflow will run
-# For more information see: https://docs.github.com/actions/reference/workflow-syntax-for-github-actions
+name: CI Workflow
 
+# Trigger the workflow on push events to the main branch and on pull requests targeting the main branch.
+# It also triggers on pushes to any other branch for basic linting and dependency checks.
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
+  workflow_dispatch: # Allows manual triggering
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This job builds, tests, and packages the application
   build_and_test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [ '20.x' ] # Specify Node.js versions for testing
+    # Define environment variables for the build
+    env:
+      NODE_VERSION: '20'
+      EXPO_VERSION: '51'
+      # CI=true will be set by default for GitHub Actions
 
     steps:
-      - name: Checkout code
+      # 1. Checkout the repository code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node-version }}
+      # 2. Set up Node.js environment
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm' # Cache npm dependencies
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
 
+      # 3. Install project dependencies using npm
+      #    'npm ci' is generally faster and more reliable for CI environments than 'npm install'
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Install Expo CLI (if needed)
-        # Expo CLI is often required for React Native builds
-        run: npm install -g expo-cli
+      # 4. Install Expo CLI and project dependencies if Expo is used
+      #    This step is crucial for React Native Expo projects to ensure the Expo environment is set up correctly.
+      - name: Setup Expo CLI and Install Expo Packages
+        run: |
+          npm install -g expo-cli@${{ env.EXPO_VERSION }}
+          npx expo install
 
-      - name: Lint with Ruff (or relevant linter for TS)
-        # Assuming a modern setup, Ruff can lint TS/JS with plugins, or use ESLint if preferred and configured.
-        # For simplicity here, we'll assume a basic lint command. Replace with actual lint command.
-        # If using Biome, the command would be: npx @biomejs/biome lint . 
-        run: echo "Running linter..."
-        # If you have a specific lint script in package.json:
-        # run: npm run lint 
-        # Example for Biome (if installed globally or via dev dependencies):
-        # run: biome lint --apply .
+      # 5. Run Linting and Formatting Check
+      #    This step ensures code style consistency and catches potential errors early.
+      #    Biome is recommended for its speed and comprehensive features.
+      - name: Run Linter and Formatter (Biome)
+        run: npx @biomejs/biome check --apply --no-warn
 
-      - name: Run Vitest (Unit/Integration Tests)
-        # Assumes Vitest is configured for React Native and tests are in a 'tests' directory or similar.
-        run: npm run test -- --coverage
+      # 6. Run Unit and Integration Tests
+      #    Vitest is a fast, Vite-native test framework that pairs well with React Native.
+      #    The 'project' option is used if you have a monorepo structure or specific test setups.
+      - name: Run Tests (Vitest)
+        run: npx vitest run --reporter=default --reporter=github
         env:
-          CI: true # Ensures test runners behave correctly in CI environment
+          CI: true
 
-      # Note: E2E tests for mobile apps (like on Android) typically require a more complex setup
-      # involving emulators or physical devices and tools like Appium or Playwright's mobile capabilities.
-      # This basic CI assumes unit/integration tests. E2E would be a separate job or stage.
-      - name: Setup Android SDK (for potential native builds/tests)
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-      - name: Grant execute permissions for gradlew
-        run: chmod +x android/gradlew
-      - name: Build Android App (Debug)
-        run: cd android && ./gradlew assembleDebug
+      # 7. Build the application for Android
+      #    This step compiles the React Native code into an Android APK or AAB.
+      #    The command will vary depending on your specific Expo build setup (e.g., EAS Build).
+      #    For demonstration, we'll use a placeholder command assuming EAS Build is configured.
+      #    NOTE: For actual production builds, consider using EAS Build: https://docs.expo.dev/build/introduction/
+      - name: Build Android App (Placeholder/EAS Build)
+        # Replace with actual command to build your Android app. Example for EAS Build:
+        # run: eas build --platform android --profile preview
+        run: echo "Placeholder for Android build step. Use EAS Build for production."
+        # Example if building locally (less common for CI):
+        # run: npx expo run:android
 
-      - name: Upload Coverage Report
-        uses: codecov/codecov-action@v4
+      # 8. Upload build artifacts (optional, but recommended)
+      #    This step allows you to download the generated APK/AAB from the GitHub Actions run.
+      #    The artifact name and path will depend on your build output.
+      - name: Upload Android Artifact
+        if: success() # Only run if previous steps were successful
+        uses: actions/upload-artifact@v4
         with:
-          token: ${{ secrets.CODECOV_TOKEN }} # Make sure to set this secret in your repository settings
-          files: ./coverage/coverage.json # Path to your coverage report file
-          fail_ci_if_error: true
+          name: android-build
+          path: android/app/build/outputs/apk/release/app-release.apk # Adjust path as per your build output
+          # If using AAB:
+          # path: android/app/build/outputs/bundle/release/app-release.aab
+
+      # 9. (Optional) Code Coverage Upload
+      #    If your tests generate coverage reports (e.g., using Vitest's coverage feature),
+      #    you can upload them to a service like Codecov.
+      # - name: Upload Coverage to Codecov
+      #   uses: codecov/codecov-action@v4
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }} # Ensure this token is set in your GitHub repository secrets
+      #     files: ./coverage/clover.xml # Adjust path to your coverage report file
+      #     fail_ci_if_error: true # Fail the workflow if uploading coverage fails
