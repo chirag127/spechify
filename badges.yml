@@ -1,32 +1,36 @@
----
-# Badges configuration for AudioWhisper-System-Audio-Capture-Mobile-App
+# Configuration for GitHub Repository Badges (Shields.io)
+# Repository: Spechify-Audio-Capture-Android-Mobile-App
+# Owner: chirag127
 
-build_status:
-  url: https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App/actions/workflows/ci.yml
-  image: https://img.shields.io/github/actions/workflow/status/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App/ci.yml?style=flat-square
-  alt: Build Status
+badges:
+  # --- Build & Status ---
+  - name: Build Status
+    url: https://img.shields.io/github/workflow/status/chirag127/Spechify-Audio-Capture-Android-Mobile-App/ci.yml?label=Build&style=flat-square
+    markdown: "[![Build Status](https://img.shields.io/github/workflow/status/chirag127/Spechify-Audio-Capture-Android-Mobile-App/ci.yml?label=Build&style=flat-square)](https://github.com/chirag127/Spechify-Audio-Capture-Android-Mobile-App/actions/workflows/ci.yml)"
 
-code_coverage:
-  url: https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App
-  image: https://img.shields.io/codecov/c/github/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App?style=flat-square
-  alt: Code Coverage
+  # --- Coverage & Quality ---
+  - name: Code Coverage
+    url: https://img.shields.io/codecov/c/github/chirag127/Spechify-Audio-Capture-Android-Mobile-App?token=CODECOV_TOKEN&style=flat-square
+    markdown: "[![Code Coverage](https://img.shields.io/codecov/c/github/chirag127/Spechify-Audio-Capture-Android-Mobile-App?token=CODECOV_TOKEN&style=flat-square)](https://codecov.io/gh/chirag127/Spechify-Audio-Capture-Android-Mobile-App)"
 
-tech_stack:
-  url: https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App
-  image: https://img.shields.io/badge/Tech_Stack-React_Native%2C_TypeScript%2C_Expo-blue?style=flat-square
-  alt: Tech Stack
+  # --- Tech Stack ---
+  - name: Language
+    url: https://img.shields.io/github/languages/top/chirag127/Spechify-Audio-Capture-Android-Mobile-App?style=flat-square
+    markdown: "[![Language](https://img.shields.io/github/languages/top/chirag127/Spechify-Audio-Capture-Android-Mobile-App?style=flat-square)](https://github.com/chirag127/Spechify-Audio-Capture-Android-Mobile-App)"
 
-linter:
-  url: https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App
-  image: https://img.shields.io/badge/Lint_and_Format-Biome-green?style=flat-square
-  alt: Linter
+  - name: Frameworks
+    url: https://img.shields.io/badge/Framework-React%20Native%20%2F%20Expo-007ACC?style=flat-square
+    markdown: "[![Framework](https://img.shields.io/badge/Framework-React%20Native%20%2F%20Expo-007ACC?style=flat-square)]()"
 
-license:
-  url: https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App/blob/main/LICENSE
-  image: https://img.shields.io/github/license/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App?style=flat-square
-  alt: License
+  - name: TypeScript Strict
+    url: https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square
+    markdown: "[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square)]()"
 
-github_stars:
-  url: https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App
-  image: https://img.shields.io/github/stars/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App?style=flat-square
-  alt: GitHub Stars
+  # --- License & Social ---
+  - name: License
+    url: https://img.shields.io/github/license/chirag127/Spechify-Audio-Capture-Android-Mobile-App?style=flat-square
+    markdown: "[![License](https://img.shields.io/github/license/chirag127/Spechify-Audio-Capture-Android-Mobile-App?style=flat-square)](https://github.com/chirag127/Spechify-Audio-Capture-Android-Mobile-App/blob/main/LICENSE)"
+
+  - name: GitHub Stars
+    url: https://img.shields.io/github/stars/chirag127/Spechify-Audio-Capture-Android-Mobile-App?style=flat-square
+    markdown: "[![GitHub Stars](https://img.shields.io/github/stars/chirag127/Spechify-Audio-Capture-Android-Mobile-App?style=flat-square)](https://github.com/chirag127/Spechify-Audio-Capture-Android-Mobile-App)"
