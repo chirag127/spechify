@@ -1,130 +1,113 @@
-# Contributing Guidelines
+# Contributing to Spechify-Audio-Capture-Android-Mobile-App
 
-Welcome to **AudioWhisper-System-Audio-Capture-Mobile-App**! We appreciate your interest in contributing to this project.
+Thank you for considering contributing to the Spechify-Audio-Capture-Android-Mobile-App project! We aim to maintain a high standard of quality, velocity, and future-proofing, mirroring the **Apex Technical Authority** principles.
 
-## Code of Conduct
+## 1. Our Core Principles
 
-This project adheres to the Contributor Covenant Code of Conduct. Please read the full text at [https://www.contributor-covenant.org/version/2/1/04guidelines/](https://www.contributor-covenant.org/version/2/1/04guidelines/) to understand the expected behavior.
+*   **Zero-Defect:** Strive for production-ready code. All contributions should be well-tested and adhere to strict linting rules.
+*   **High-Velocity:** Streamlined processes enable rapid iteration. Ensure your contributions are clear, concise, and easily reviewable.
+*   **Future-Proof:** Embrace modern standards and best practices. Contributions should be scalable and maintainable for the long term.
 
-## How to Contribute
+## 2. Getting Started
 
-We welcome contributions in the form of bug reports, feature requests, and pull requests.
+### 2.1. Setup
 
-### Reporting Bugs
-
-1.  **Search First:** Please check if your bug has already been reported. Search existing issues on the [GitHub repository](https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App/issues).
-2.  **Create a Detailed Issue:** If your bug is new, please open a new issue. Use the provided bug report template to ensure all necessary information is included:
-    *   **Version:** The specific version of the app you are using.
-    *   **Device & OS:** Your Android device model and OS version.
-    *   **Steps to Reproduce:** Clear, concise steps that lead to the bug.
-    *   **Expected Behavior:** What you expected to happen.
-    *   **Actual Behavior:** What actually happened.
-    *   **Screenshots/Recordings:** If possible, include visual aids.
-    *   **Logs:** Any relevant error messages or console logs.
-
-### Feature Requests
-
-If you have an idea for a new feature, please open a new issue and select the "Feature Request" template. Provide a clear description of the proposed feature and its potential benefits.
-
-### Pull Requests
-
-We follow a fork-and-pull request model for contributions:
-
-1.  **Fork the Repository:** Click the "Fork" button on the top right of the [main repository page](https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App).
-2.  **Clone Your Fork:** Clone your forked repository to your local machine:
+1.  **Fork the repository:** Fork `https://github.com/chirag127/Spechify-Audio-Capture-Android-Mobile-App` to your GitHub account.
+2.  **Clone your fork:**
     bash
-    git clone https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App.git
-    cd AudioWhisper-System-Audio-Capture-Mobile-App
+    git clone https://github.com/<your-username>/Spechify-Audio-Capture-Android-Mobile-App.git
+    cd Spechify-Audio-Capture-Android-Mobile-App
     
-3.  **Create a New Branch:** Create a descriptive branch for your changes:
+3.  **Set up upstream remote:**
     bash
-    git checkout -b feature/your-new-feature
-    # or for a bug fix:
-    git checkout -b fix/your-bug-fix
+    git remote add upstream https://github.com/chirag127/Spechify-Audio-Capture-Android-Mobile-App.git
     
-4.  **Make Your Changes:** Implement your feature or fix the bug. Ensure your code adheres to the project's coding standards (see below).
-5.  **Test Your Changes:** Run the tests to ensure your changes haven't introduced regressions.
+4.  **Install dependencies:**
     bash
-    # Refer to README.md for specific testing commands (e.g., vitest, playwright)
+    # Assuming Expo/React Native project, adjust as necessary
+    npm install
+    # or
+    yarn install
     
-6.  **Commit Your Changes:** Make clear, concise commits. Use conventional commits if possible.
+
+### 2.2. Development Environment (Late 2025 Standards)
+
+*   **Language:** TypeScript 6.x (Strict Mode Enabled)
+*   **Framework:** React Native (with Expo managed workflow)
+*   **Bundler:** Vite 7 (Rolldown)
+*   **Styling:** TailwindCSS v4+
+*   **Native Layer:** Tauri v2.x (if applicable for future expansion beyond mobile)
+*   **Linting/Formatting:** Biome (Ultra-fast, unified tool for linting and formatting)
+*   **Testing:** Vitest (Unit Tests), Playwright (E2E Tests)
+
+Ensure your local development environment meets these standards. Use Biome for code formatting before committing.
+
+## 3. Contribution Workflow
+
+### 3.1. Feature Development / Bug Fixes
+
+1.  **Create a new branch:** Based on the `main` branch, create a descriptive branch name (e.g., `feature/add-background-recording` or `fix/audio-stutter-issue`).
+    bash
+    git checkout -b feature/your-feature-branch-name
+    
+2.  **Implement changes:** Follow the project's architectural patterns (e.g., Feature-Sliced Design if applicable) and coding standards.
+3.  **Write tests:** Add unit tests for new logic and update existing tests. Ensure sufficient test coverage.
+4.  **Format code:** Run the formatter.
+    bash
+    npx @biomejs/biome format --write .
+    
+5.  **Lint code:** Check for any linting errors.
+    bash
+    npx @biomejs/biome lint --apply .
+    
+6.  **Test thoroughly:** Run all tests locally.
+    bash
+    npx vitest
+    # For E2E tests, follow instructions in README.md
+    
+7.  **Commit your changes:** Write clear, concise commit messages.
     bash
     git add .
-    git commit -m "feat: Add user profile editing functionality"
+    git commit -m "feat: Add seamless background audio capture"
     
-7.  **Push to Your Fork:** Push your branch to your fork on GitHub:
+8.  **Push your branch:**
     bash
-    git push origin feature/your-new-feature
+    git push origin feature/your-feature-branch-name
     
-8.  **Open a Pull Request:** Navigate to the [main repository](https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App) and click the "Compare & pull request" button. Provide a clear title and description for your PR.
 
-## Development Standards
+### 3.2. Pull Request (PR) Creation
 
-This project adheres to the Apex Technical Authority standards, focusing on maintainability, scalability, and developer velocity.
+1.  **Open a Pull Request:** Navigate to the `https://github.com/chirag127/Spechify-Audio-Capture-Android-Mobile-App` repository and open a new pull request from your feature branch to the `main` branch.
+2.  **PR Template:** Fill out the Pull Request template completely. This will include:
+    *   A clear title.
+    *   A detailed description of the changes.
+    *   How to test the changes.
+    *   Any relevant screenshots or videos.
+    *   Confirmation that tests pass and code is formatted/linted.
+3.  **Address Feedback:** Be responsive to code review feedback. If changes are requested, commit them to your feature branch and push again. The PR will update automatically.
 
-*   **Language:** TypeScript (Strict Mode Enabled).
-*   **Framework:** React Native.
-*   **Build/Bundle:** Expo.
-*   **Linting/Formatting:** Biome (for speed and comprehensive checks).
-*   **Testing:** Vitest (Unit) & Playwright (E2E).
-*   **Architecture:** Feature-Sliced Design (FSD) principles are encouraged for modularity and scalability.
-*   **Code Quality:** Adhere to SOLID principles, DRY (Don't Repeat Yourself), and YAGNI (You Ain't Gonna Need It).
-*   **Commit Messages:** Follow [Conventional Commits](https://www.conventionalcommits.org/) for clarity and automated changelog generation.
+## 4. Coding Standards & Best Practices
 
-### Setup
+*   **TypeScript:** Use strict typing (`strict: true` in `tsconfig.json`). Prefer `const` over `let`. Avoid `any` type unless absolutely necessary and well-justified.
+*   **React Native:** Follow functional component patterns with Hooks. Keep components small and focused.
+*   **State Management:** Utilize React's built-in state management (useState, useReducer, Context API) or a community-standard library like Zustand or Jotai if complexity warrants it. Avoid prop drilling.
+*   **Error Handling:** Implement robust error handling for all asynchronous operations, API calls, and background tasks. Use try-catch blocks and provide meaningful error messages.
+*   **Background Tasks:** Adhere to best practices for background audio recording on Android to ensure stability and prevent app termination by the OS. Leverage Expo's background task APIs or native modules where appropriate.
+*   **Security:** Be mindful of Android permissions. Request only necessary permissions and explain why they are needed. Avoid storing sensitive data insecurely.
+*   **Performance:** Optimize rendering, minimize unnecessary re-renders, and be efficient with resource usage (CPU, memory, battery), especially for background processes.
+*   **Architecture:** Adhere to the established architectural patterns. Consult the `AGENTS.md` file for specific directives.
+*   **Documentation:** Write clear inline code comments for complex logic and update relevant documentation files (like `README.md`) if your changes introduce significant new features or alter existing behavior.
 
-Refer to the `README.md` for detailed setup instructions, including environment configuration and dependency installation.
+## 5. AI Agent Directives
 
-### Running Tests
+For detailed instructions on how AI agents interact with this codebase, please refer to the **[AGENTS.md](./AGENTS.md)** file. Ensure your contributions align with the specified architecture, testing, and verification commands.
 
-Refer to the `README.md` for commands to run unit and end-to-end tests.
+## 6. Reporting Issues
 
-## AI Agent Directives
+If you discover a bug or have a feature request, please open an issue on GitHub. Use the provided issue templates (`bug_report.md`) and provide as much detail as possible.
 
-This repository is managed by AI Agents following the Apex Technical Authority protocols. Ensure your contributions are compatible with the AI's understanding:
+## 7. Code of Conduct
 
-<details>
-<summary>View AI Agent Directives</summary>
+This project adheres to the Contributor Covenant Code of Conduct. By participating, you are expected to uphold this code. Please report unacceptable behavior to `chirag127@example.com`.
 
-## SYSTEM: APEX TECHNICAL AUTHORITY & ELITE ARCHITECT (DECEMBER 2025 EDITION)
-
-### 1. IDENTITY & PRIME DIRECTIVE
-**Role:** Senior Principal Software Architect, Master Technical Copywriter. 40+ years of elite industry experience. Enforce FAANG-level standards and "Managing the Unmanageable."
-**Context:** December 2025. Building for 2026 standards.
-**Output Standard:** EXECUTION-ONLY.
-**Philosophy:** "Zero-Defect, High-Velocity, Future-Proof."
-
-### 2. INPUT PROCESSING & COGNITION
-*   **SPEECH-TO-TEXT INTERPRETATION PROTOCOL:** Infer technical intent based on project context; **STRICTLY FORBIDDEN** from executing literal typos. SSOT is `README.md`.
-*   **MANDATORY MCP INSTRUMENTATION:** Use `linkup`/`brave` for December 2025 industry standards, security threats, and 2026 UI trends. Use `docfork` to verify external APIs. Use `clear-thought-two` for complex flows.
-
-### 3. CONTEXT-AWARE APEX TECH STACKS (LATE 2025 STANDARDS)
-*   **PROJECT TYPE:** Web / App / GUI (Modern Frontend).
-*   **STACK:** **TypeScript 6.x (Strict)**, **Vite 7 (Rolldown)**, **TailwindCSS v4**, **Tauri v2.x**.
-*   **LINT/TEST:** **Biome** (Speed) + **Vitest** (Unit) + **Playwright** (E2E).
-*   **ARCHITECTURE:** **Feature-Sliced Design (FSD)**.
-
-### 4. APEX NAMING CONVENTION (THE "STAR VELOCITY" ENGINE)
-Format: `<Product-Name>-<Primary-Function>-<Platform>-<Type>` (e.g., `AudioWhisper-System-Audio-Capture-Mobile-App`).
-
-### 5. THE README REPLICATION PROTOCOL (THE ULTIMATE ARTIFACT)
-*   **VISUAL AUTHORITY:** Hero Banner/Logo, Live Badges (`flat-square`, `chirag127`), Social Proof.
-*   **STRUCTURAL CLARITY:** BLUF, Architecture Diagram, Table of Contents.
-*   **🤖 AI AGENT DIRECTIVES:** Collapsible `<details>` block. Tech Stack, Architectural Patterns, Verification Commands.
-*   **DEVELOPMENT STANDARDS:** Setup commands, Scripts table, Principles (SOLID, DRY, YAGNI).
-
-### 6. CHAIN OF THOUGHT (CoT) PROTOCOL
-Audit -> Pivot/Archive -> Naming -> Agent Directives -> File Generation -> Polish.
-
-### 7. DYNAMIC URL & BADGE PROTOCOL
-*   **Base URL:** `https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App`
-*   **Consistency:** Always use the new repository name in links and badges.
-
-### 8. AGENTS.MD CUSTOMIZATION
-Customize `AGENTS.md` for the specific repository's tech stack while retaining core Apex principles.
-
-</details>
-
-By adhering to these guidelines, you help maintain a high-quality, consistent, and AI-friendly codebase.
-
----
+We appreciate your contributions to making `Spechify-Audio-Capture-Android-Mobile-App` a high-quality, reliable application!
