@@ -1,113 +1,106 @@
-# AudioWhisper
+# Spechify-Audio-Capture-Android-Mobile-App
 
-[![Build Status](https://img.shields.io/github/actions/workflow/ci.yml?style=flat-square&logo=github&label=Build&user=chirag127&repo=AudioWhisper-System-Audio-Capture-Mobile-App)](https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App/actions/workflows/ci.yml)  [![Code Coverage](https://img.shields.io/codecov/c/github/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App?style=flat-square&label=Coverage&user=chirag127&logo=codecov)](https://app.codecov.io/gh/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App)  [![Tech Stack](https://img.shields.io/badge/Tech%20Stack-TypeScript%20%7C%20React%20Native%20%7C%20Expo-blue.svg?style=flat-square&logo=react)](https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App)  [![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc/4.0/)
+## 1. PROJECT OVERVIEW & VALUE PROPOSITION
 
-Capture system audio on Android devices with a sleek, user-friendly React Native interface.
+This repository contains the source code for **Spechify**, a native-grade mobile application built with React Native (Expo) designed to securely capture and manage system-level audio streams originating from other running applications on the Android platform. It prioritizes robustness, background execution stability, and a seamless user experience for high-fidelity audio documentation.
 
-[Star ⭐ this Repo](https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App)
+## 2. ARCHITECTURAL DIAGRAM (MERMAID)
 
-## Table of Contents
-
-1.  [About](#about)
-2.  [Features](#features)
-3.  [Installation](#installation)
-4.  [Usage](#usage)
-5.  [Architecture](#architecture)
-6.  [Contributing](#contributing)
-7.  [License](#license)
-
-## About
-
-AudioWhisper is a React Native mobile application designed to capture system audio on Android devices. It provides a clean and intuitive interface, enabling users to record audio streams from their device in the background. With support for dark and light themes, and easy sharing capabilities, AudioWhisper offers a seamless audio capture experience.
-
-## Features
-
-*   Background Audio Recording
-*   Dark and Light Theme Support
-*   Easy Audio Sharing
-*   User-Friendly React Native Interface
-*   Expo-based Development
-
-## Installation
-
-1.  **Clone the repository:**
-    bash
-    git clone https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App.git
-    cd AudioWhisper-System-Audio-Capture-Mobile-App
-    
-2.  **Install dependencies:**
-    bash
-    npm install
-    
-3.  **Run the app:**
-    bash
-    npx expo start
-    
-
-## Usage
-
-*   Launch the app on your Android device or emulator.
-*   Grant necessary permissions for audio recording.
-*   Start recording audio using the provided controls.
-*   Access recorded audio files and share them as needed.
-
-## Architecture
+This architecture follows a layered approach, isolating platform-specific audio capture modules from the core state management and UI layers.
 
 mermaid
-graph LR
-    A[App.js (Entry Point)] --> B{Context Providers};
-    B --> C[AudioCaptureProvider];
-    B --> D[ThemeProvider];
-    C --> E[AudioRecorder];
-    C --> F[AudioPlayer];
-    D --> G[ThemeContext];
-    E --> H[RecordingService];
-    F --> I[PlaybackService];
-    H --> J[NativeModule (Android)];
-    I --> J
-    style J fill:#f9f,stroke:#333,stroke-width:2px
+graph TD
+    A[React Native UI/Expo] --> B{State Management / Context}
+    B --> C[Business Logic / Services]
+    C --> D[Native Module Bridge (JNI/Expo SDK)]
+    D -- Android API Hooks --> E[(System Audio Stream Access)]
+    C --> F[Local Storage / Async Storage]
+    style E fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#ccf,stroke:#333,stroke-width:2px
 
 
-## Contributing
+## 3. TABLE OF CONTENTS
 
-Contributions are welcome! Please refer to the [CONTRIBUTING.md](https://github.com/chirag127/AudioWhisper-System-Audio-Capture-Mobile-App/blob/main/.github/CONTRIBUTING.md) file for guidelines.
+1.  [Project Overview & Value Proposition](#1-project-overview--value-proposition)
+2.  [Architectural Diagram (Mermaid)](#2-architectural-diagram-mermaid)
+3.  [Table of Contents](#3-table-of-contents)
+4.  [🤖 AI Agent Directives (The Apex Blueprint)](#4-ai-agent-directives-the-apex-blueprint)
+5.  [Technology Stack & Core Principles](#5-technology-stack--core-principles)
+6.  [Development Setup & Execution](#6-development-setup--execution)
+7.  [Contributing Guidelines](#7-contributing-guidelines)
 
-## License
+---
 
-This project is licensed under the [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license.
+## 4. 🤖 AI Agent Directives (The Apex Blueprint)
 
 <details>
-<summary>🤖 AI Agent Directives</summary>
+<summary>Click to expand the **DECEMBER 2025 APEX ARCHITECTURAL MANDATES**</summary>
 
-This section provides directives for AI agents interacting with this repository.
+### 4.1. IDENTITY & PRIME DIRECTIVE
+**Role:** You are a Senior Principal Software Architect and Master Technical Copywriter with **40+ years of elite industry experience**. You operate with absolute precision, enforcing FAANG-level standards and the wisdom of "Managing the Unmanageable."
+**Context:** Current Date is **December 2025**. You are building for the 2026 standard.
+**Output Standard:** Deliver **EXECUTION-ONLY** results. No plans, no "reporting"—only executed code, updated docs, and applied fixes.
+**Philosophy:** "Zero-Defect, High-Velocity, Future-Proof."
 
-**Tech Stack:**
+### 4.2. CONTEXT-AWARE APEX TECH STACK
+**Project Type:** Mobile Application (React Native / TypeScript).
+**Apex Toolchain (Mobile 2026 Standard):**
+*   **Language:** TypeScript 5.x (Strict Mode enforced via `tsconfig.json`).
+*   **Framework:** React Native (Targeting latest Expo SDK for stability).
+*   **Styling:** TailwindCSS integration (via NativeWind or comparable utility layer).
+*   **Lint/Format:** **Biome** (for unified, high-speed linting, formatting, and parsing).
+*   **Testing:** **Vitest** (for unit/component testing) and **Playwright** (for cross-platform E2E simulation, although primary focus remains on Android environment stability).
+*   **Architecture:** Feature-Sliced Design (FSD) principles applied within the component tree structure to clearly separate **App**, **Pages**, **Features**, **Entities**, and **Shared** layers.
 
-*   **Language:** TypeScript
-*   **Framework:** React Native, Expo
-*   **State Management:** Context API
-*   **Styling:** Native Base or similar
-*   **Testing:** Jest, React Native Testing Library
+### 4.3. CORE PRINCIPLES VERIFICATION
+1.  **SOLID Enforcement:** Ensure Dependency Inversion (DIP) is strictly followed when bridging to native/platform-specific audio APIs (e.g., AudioRecord/MediaRecorder via Expo bridges).
+2.  **DRY Adherence:** Configuration for background services and permissions handling must be centralized in a `Shared/PlatformAdapters` slice.
+3.  **YAGNI/KISS:** Avoid premature abstraction for non-core audio codecs or complex UI states unless necessitated by current requirements or proven scaling bottlenecks.
 
-**Architectural Patterns:**
-
-*   **Component-Based Architecture:** Following React Native best practices.
-*   **Separation of Concerns:** Clearly separated UI, audio capture logic, and data handling.
-
-**Verification Commands:**
-
-*   `npm install`: Install project dependencies.
-*   `npx expo start`: Run the application in development mode.
-*   `npm test`: Run unit tests.
-*   `npm run lint`: Run the linter (e.g., eslint).
-*   `npm run format`: Format the code using Prettier.
-
-**AI Agent Guidelines:**
-
-*   **Prioritize modularity**: Ensure that any changes or additions follow a modular design pattern.
-*   **Adhere to coding standards:** strictly follow TypeScript and React Native best practices, including code style and naming conventions.
-*   **Focus on user experience**: Any UI changes must maintain a clean and user-friendly design.
-*   **Context API**: When integrating new features make sure it works in line with the context.
-*   **Prioritize performance**: Minimize any performance bottlenecks.
+### 4.4. VERIFICATION COMMANDS (For Future Agents)
+*   **Lint/Format Check:** `npx @biomejs/biome check --apply ./src`
+*   **Unit Test Execution:** `npx vitest run`
+*   **E2E Verification (Simulation):** `npx playwright test`
+*   **Dependency Resolution:** `npx expo install` (Use `uv` equivalent for general Python tooling if this repo included backend/scripts).
 
 </details>
+
+## 5. TECHNOLOGY STACK & CORE PRINCIPLES
+
+| Component | Technology | Version Standard | Purpose |
+| :--- | :--- | :--- | :--- |
+| Core Language | TypeScript | 5.x+ | Type Safety & Scalability |
+| Runtime/Framework | React Native / Expo | Latest SDK | Cross-Platform Execution |
+| Utility Layer | Biome | Latest | Linting, Formatting, Speed |
+| Testing Suite | Vitest | Latest | Unit & Component Verification |
+| State Management | React Context / Zustand | Current | Predictable State Flow |
+| Architectural Pattern | Feature-Sliced Design (FSD) | N/A | Maintainability & Scalability |
+
+**Core Development Philosophy:**
+*   **Type-First:** All data contracts involving audio metadata or configuration must utilize strict TypeScript interfaces.
+*   **Platform-Awareness:** Acknowledge Android's aggressive background process killing and implement necessary foreground service mechanics via the Expo Native layer.
+
+## 6. DEVELOPMENT SETUP & EXECUTION
+
+**Prerequisites:** Node.js (LTS+), npm/yarn/pnpm, Android Studio with necessary SDKs for native builds.
+
+### 6.1. CLONE AND INITIALIZE
+bash
+git clone https://github.com/chirag127/Spechify-Audio-Capture-Android-Mobile-App.git
+cd Spechify-Audio-Capture-Android-Mobile-App
+# Use pnpm for optimal speed in large RN/TS projects
+pnpm install
+
+
+### 6.2. AVAILABLE SCRIPTS
+
+| Script | Command | Description |
+| :--- | :--- | :--- | 
+| `dev` | `npx expo start` | Start the development server and Metro bundler. |
+| `lint:fix` | `npx @biomejs/biome check --apply ./src` | Auto-fix linting and formatting issues. |
+| `test` | `npx vitest run` | Run all unit and component tests. |
+| `android` | `npx expo run:android` | Build and run the application on an attached Android device/emulator. |
+
+## 7. CONTRIBUTING GUIDELINES
+
+Contributions are welcomed provided they strictly adhere to the Apex Standards detailed in the `.github/CONTRIBUTING.md` file. All Pull Requests **MUST** pass CI checks (Build Status, Linting) before merging. Please review the Security Policy before disclosing vulnerabilities.
